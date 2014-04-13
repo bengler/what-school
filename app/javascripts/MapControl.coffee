@@ -8,12 +8,19 @@ module.exports = class MapControl
         detectRetina: true
     }))
 
-    L.marker([59.9218, 10.73427]).addTo(@map);
-
     svg = d3.select(@map.getPanes().overlayPane).append("svg")
     g = svg.append("g").attr("class", "leaflet-zoom-hide")
 
     d3.json "data/primaries.json", (collection)=> 
+
+      smallIcon = L.icon({
+          iconUrl: 'images/small_icon.png',
+          iconRetinaUrl: 'images/small_icon@2x.png',
+          iconSize:     [20, 20], 
+          iconAnchor:   [10, 10], 
+          popupAnchor:  [10, -10] 
+      })
+
       onEachFeature = (feature, layer)->
         properties = feature.properties
         if properties
@@ -23,17 +30,24 @@ module.exports = class MapControl
             popUp += "<p>Tel: <a href=\"tel:" + properties.TLF + "\">" + properties.TLF + "</a></p>"
           layer.bindPopup(popUp)
 
+
+      pointToLayer = (feature, latlng)->
+        console.info smallIcon
+        marker = L.marker(latlng, {icon: smallIcon});
+
+
       L.geoJson(collection, {
-        onEachFeature: onEachFeature
+        pointToLayer: pointToLayer,
+        onEachFeature: onEachFeature,
         }).addTo(@map)
 
-    d3.json "data/school_boundaries.json", (collection)=> 
+    d3.json "data/school_boundaries.topo.json", (collection)=> 
       projectStream = (x,y,that)=>
         point = @map.latLngToLayerPoint(new L.LatLng(y, x))
         that.stream.point(point.x, point.y)
 
       reset = ()=>
-        bounds = path.bounds(collection)
+        bounds = path.bounds(topo)
         topLeft = bounds[0]
         bottomRight = bounds[1]
 
@@ -46,11 +60,12 @@ module.exports = class MapControl
 
         feature.attr("d", path)
 
+      topo = topojson.feature(collection, collection.objects.school_boundaries);
       transform = d3.geo.transform({point: (x,y)->projectStream(x,y,this)})
       path = d3.geo.path().projection(transform)
 
       feature = g.selectAll("path")
-        .data(collection.features)
+        .data(topo.features)
         .enter().append("path")
 
       @map.on("viewreset", reset)

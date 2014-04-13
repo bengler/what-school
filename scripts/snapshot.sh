@@ -21,6 +21,6 @@ echo "Getting the boundaries"
 curl "http://od2.pbe.oslo.kommune.no/cgi-bin/skolekretser?LAYERS=Skolekretser_l&TRANSPARENT=TRUE&SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&STYLES=&SRS=EPSG%3A32632&BBOX=564440.0192024,6608598.0223571,635559.9807976,6691401.9776429&WIDTH=630&HEIGHT=733&typename=Skolekretser_f&outputFormat=GML2" > school_boundaries.gml
 rm ../app/assets/data/school_boundaries.json
 ogr2ogr -f "GeoJSON"  -s_srs 'EPSG:25832' -t_srs 'EPSG:4326' ../app/assets/data/school_boundaries.json school_boundaries.gml
-topojson ../app/assets/data/school_boundaries.json -o --/app/assets/data/school_boundaries.topo
+topojson -p SKRETSNAVN "../app/assets/data/school_boundaries.json" -o "../app/assets/data/school_boundaries.topo.json"
 cd ..
-rm -rf tmp_snarf
+# rm -rf tmp_snarf
