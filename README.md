@@ -7,7 +7,7 @@ A single evening suggestion as to how one might formulate a service to let you f
 
 - Lovely retina tiles from mapbox
 - GeoJSON rendered directly in D3
-- 
+- Fuzzy front end text search
 
 ## Requirements
 
