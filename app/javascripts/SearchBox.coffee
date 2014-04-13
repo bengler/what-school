@@ -44,7 +44,7 @@ module.exports = class SearchBox
     html = "<ul>"
     matches.forEach (match)=>
       if match[0].entireStreet
-        html += "<li><strong>" + match[0].street + "</strong> går på <strong>" + match[0].school + " skole</strong></li>"
+        html += "<li>Hele <strong>" + match[0].street + "</strong> går på <strong>" + match[0].school + " skole</strong></li>"
       else
         html += "<li>I <strong>" + match[0].street + "</strong> går de på <ul>"
         match.forEach (stretch)->

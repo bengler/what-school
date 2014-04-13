@@ -21,9 +21,10 @@ html(lang='en')
     script(src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js')
     script(src="http://d3js.org/d3.v3.min.js", charset="utf-8")
     script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js", charset="utf-8")
+    meta(name='viewport', content='initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width')
 
   body
-    h1 Hvor skal barna dine gå på skolen?
+    h1 Hvilken barneskole hører dere til?
 
     include templates/search_school.jade
     include templates/map.jade

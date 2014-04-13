@@ -15,7 +15,7 @@ body
   margin: 0
 
   h1
-    background-image: url(/images/letters.jpg)
+    background-image: url(../images/letters.jpg)
     background-size: cover
     color: white
     margin: 0
@@ -30,10 +30,10 @@ body
       font-size: 20px
 
     .searchResults
-      min-height: 150px
+      height: 180px
       display: none
       font-size: 14px
-      overflow: none
+      overflow: scroll
 
       ul
         padding-left: 10px
@@ -53,12 +53,14 @@ body
   svg
 
     path
-      fill: #000
-      // fill-opacity: 0
+      fill: #444
+      fill-opacity: 0.2
       stroke: #000
-      stroke-width: 3px
+      stroke-width: 1px
+      stroke-dasharray: 2,2
+      stroke-linejoin: round
 
     path:hover
-      fill: brown
-      fill-opacity: .7
+      fill: #fff
+      fill-opacity: 0.6
 
