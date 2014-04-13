@@ -1,0 +1,64 @@
+// Useful mixins for CSS3 effects.
+@import 'nib'
+
+// Make browsers render HTML elements consistently.
+@import 'normalize'
+
+
+@import '_variables'
+@import '_mixins'
+
+@import '_typography'
+
+
+body 
+  margin: 0
+
+  h1
+    background-image: url(/images/letters.jpg)
+    background-size: cover
+    color: white
+    margin: 0
+    padding: 20px 20px 20px 20px
+    font-size: 40px
+    text-shadow: 0px 1.5px 0px #000
+
+  form
+    input
+      margin-top: 10px
+      display: block
+      font-size: 20px
+
+    .searchResults
+      min-height: 150px
+      display: none
+      font-size: 14px
+      overflow: none
+
+      ul
+        padding-left: 10px
+        list-style: none
+      li
+        margin-bottom: 5px
+
+      ul ul
+        color: #444
+
+  .content
+    padding-left: 20px
+
+  #map 
+    height: 500px
+
+  svg
+
+    path
+      fill: #000
+      // fill-opacity: 0
+      stroke: #000
+      stroke-width: 3px
+
+    path:hover
+      fill: brown
+      fill-opacity: .7
+
