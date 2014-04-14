@@ -18,7 +18,7 @@ module.exports = class MapControl
           iconRetinaUrl: 'images/small_icon@2x.png',
           iconSize:     [20, 20], 
           iconAnchor:   [10, 10], 
-          popupAnchor:  [10, -10] 
+          popupAnchor:  [0, -1] 
       })
 
       onEachFeature = (feature, layer)->
@@ -27,7 +27,7 @@ module.exports = class MapControl
           popUp = "<h2><a href=\"" + properties.URL + "\">"
           popUp += properties.NAVN + "</a></h2>"
           if properties.TLF?
-            popUp += "<p>Tel: <a href=\"tel:" + properties.TLF + "\">" + properties.TLF + "</a></p>"
+            popUp += "<small>Tel: <a href=\"tel:" + properties.TLF + "\">" + properties.TLF + "</a></small>"
           layer.bindPopup(popUp)
 
 
@@ -42,6 +42,7 @@ module.exports = class MapControl
         }).addTo(@map)
 
     d3.json "data/school_boundaries.topo.json", (collection)=> 
+    
       projectStream = (x,y,that)=>
         point = @map.latLngToLayerPoint(new L.LatLng(y, x))
         that.stream.point(point.x, point.y)
