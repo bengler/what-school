@@ -37,19 +37,46 @@ body
       font-size: 20px
 
     .searchResults
-      height: 180px
       display: none
-      font-size: 14px
+      font-size: 12px
       overflow: scroll
+      padding-top: 5px
 
       ul
         padding-left: 10px
         list-style: none
-      li
-        margin-bottom: 5px
 
-      ul ul
-        color: #444
+      ul li
+        margin-bottom: 5px
+        clear: both
+
+        .heading
+          margin: 5px 0px 5px 0px
+
+        .streetSide
+          width: 45%
+          float: left
+
+          ul
+            padding: 0
+
+            li
+              padding: 5px 5px 5px 0px
+              margin: 5px 5px 5px 0px
+              background-color: #eee
+              text-align: center
+
+              .schoolName
+                font-weight: bold
+        
+        .streetSide.odd
+          ul
+            border-right: 1px solid #ddd
+  
+        .streetSide.even
+          margin-left: 5px
+
+
 
   .content
     padding-left: 20px
@@ -62,7 +89,6 @@ body
 
     .leaflet-container .leaflet-popup-content h2 
       font-size: 20px
-
 
   svg
     path

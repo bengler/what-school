@@ -26,8 +26,8 @@ html(lang='en')
   body
     h1 Hvilken barneskole hører dere til?
 
-    include templates/search_school.jade
-    include templates/map.jade
+    include templates/_search_school.jade
+    include templates/_map.jade
 
     .content.footer
       small 
@@ -41,6 +41,7 @@ html(lang='en')
         | .
 
     script(src='javascripts/vendor.js')
+    script(src='javascripts/template.js')
     script(src='javascripts/app.js')
 
     script.

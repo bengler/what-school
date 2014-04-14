@@ -1,11 +1,12 @@
 
 module.exports = class SearchBox
 	constructor: () ->
-    
+
+    @streetTemplate = require "templates/street_listing"
+
     d3.csv "data/addresses.csv", (@addresses)=> 
 
       @addressDict = {}
-
       @addresses.forEach (address)=>
 
         address.oddStart = +address.oddStart
@@ -20,6 +21,9 @@ module.exports = class SearchBox
           address.entireStreet =  true
         else
           address.entireStreet = false
+
+        address.oddEnd = "slutten" if address.oddEnd == 9999
+        address.evenEnd = "slutten" if address.evenEnd == 9998
 
         @addressDict[address.street] = [] if !@addressDict[address.street]?
         @addressDict[address.street].push(address)
@@ -37,26 +41,26 @@ module.exports = class SearchBox
 
   updateView: (event) =>
     fieldValue = $("input#streetName").val()
-    matches = @search(fieldValue)
-
-    # TODO: Do this in a proper template.
+    streets = @search(fieldValue)
 
     html = "<ul>"
-    matches.forEach (match)=>
-      if match[0].entireStreet
-        html += "<li>Hele <strong>" + match[0].street + "</strong> går på <strong>" + match[0].school + " skole</strong></li>"
-      else
-        html += "<li>I <strong>" + match[0].street + "</strong> går de på <ul>"
-        match.forEach (stretch)->
-          html += "<li><strong>" + stretch.school + " skole</strong> fra nummer "
-          html += stretch.oddStart + " - " + stretch.oddEnd + " på den ene siden av gaten og fra "
-          html += stretch.evenStart + " - " + stretch.evenEnd + " på den andre</li>"
-        html += "</ul>"
+    streets.forEach (stretches)=>
+
+      # TODO: Double filtering is an artefact of awkward data structure. Refactor.
+      odd = stretches.sort (a,b)-> a.oddStart > b.oddStart
+      odd = odd.filter (a)-> ! (a.oddStart == 0)
+
+      even = stretches.sort (a,b)-> a.evenStart > b.evenStart
+      even = even.filter (a)-> ! (a.evenStart == 0)
+
+      html += @streetTemplate(street: stretches[0], even: even, odd: odd)
 
     html = html + "</ul>"
     $(".searchResults").html(html)
 
 	search: (matchString)=>
+    # TODO: Add sorting on levenshtein distance
+
     matchString = matchString.replace(/\s/g, '')
     matches = []
 

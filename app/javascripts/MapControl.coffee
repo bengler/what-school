@@ -21,20 +21,16 @@ module.exports = class MapControl
           popupAnchor:  [0, -1] 
       })
 
+      popupTemplate = require "templates/popup"
+
+
       onEachFeature = (feature, layer)->
         properties = feature.properties
         if properties
-          popUp = "<h2><a href=\"" + properties.URL + "\">"
-          popUp += properties.NAVN + "</a></h2>"
-          if properties.TLF?
-            popUp += "<small>Tel: <a href=\"tel:" + properties.TLF + "\">" + properties.TLF + "</a></small>"
-          layer.bindPopup(popUp)
-
+          layer.bindPopup(popupTemplate(properties: properties))
 
       pointToLayer = (feature, latlng)->
-        console.info smallIcon
         marker = L.marker(latlng, {icon: smallIcon});
-
 
       L.geoJson(collection, {
         pointToLayer: pointToLayer,
