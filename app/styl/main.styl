@@ -1,9 +1,6 @@
 // Useful mixins for CSS3 effects.
 @import 'nib'
 
-// Make browsers render HTML elements consistently.
-@import 'normalize'
-
 
 @import '_variables'
 @import '_mixins'
@@ -14,15 +11,8 @@
 body 
   margin: 0
 
-  h1
-    background-image: url(../images/letters.jpg)
-    background-size: cover
-    color: white
-    margin: 0
-    padding: 20px 20px 20px 20px
-    font-size: 30px
-    text-shadow: 0px 1.5px 0px #000
-    
+  .clear
+    clear:both
 
   .footer
     padding: 20px
@@ -30,67 +20,6 @@ body
     font-weight: 300
     a
       color: #444
-
-  form
-    input
-      margin-top: 10px
-      display: block
-      font-size: 20px
-
-    .searchResults
-      display: none
-      font-size: 12px
-      overflow: scroll
-      padding-top: 5px
-      height: 300px
-
-      ul
-        padding-left: 10px
-        list-style: none
-
-      ul li
-        margin-bottom: 5px
-        clear: both
-
-        .heading
-          margin: 5px 0px 10px 0px
-
-        .streetSide
-          width: 45%
-          float: left
-          color: #333
-
-          .sideHeading
-            text-align: center
-
-          ul
-            padding: 0
-
-            li
-              padding: 5px 5px 5px 0px
-              margin: 5px 5px 5px 0px
-              text-align: center
-
-              .schoolName
-                font-weight: bold
-
-              .streetNumbering
-                font-size: 14px
-                margin-bottom: 3px
-
-                .number
-                  display: inline-block
-                  padding: 3px 6px 3px 6px
-                  background-color: #fff
-                  border-radius: 2px
-                  border: 1px solid #ddd
-
-
-
-        .streetSide.even
-          margin-left: 5px
-
-
 
   .content
     padding-left: 20px
@@ -101,19 +30,102 @@ body
     @media (max-width: 320px)
       height: 300px
 
-    .leaflet-container .leaflet-popup-content h2 
-      font-size: 20px
+    svg
+      path
+        fill: #fff
+        fill-opacity: 0.1
+        stroke: #048
+        stroke-width: 1.5px
 
-  svg
-    path
-      fill: #fff
-      fill-opacity: 0.1
-      stroke: #048
-      stroke-width: 1.5px
-      // stroke-dasharray: 2,2
-      // stroke-linejoin: round
+      path:hover
+        fill: #fff
+        fill-opacity: 0.6
 
-    path:hover
-      fill: #fff
-      fill-opacity: 0.6
+  form
+    padding-right: 20px
 
+    label
+      display: block
+      margin-bottom: 10px
+      color: #666
+      font-size: 16px
+
+    .inputWrapper
+      background-color: #f8f8f8
+      padding: 3px
+      display: inline-block
+      border-radius: 2px 2px 0px 0px
+      border: 1px #eaeaea solid
+
+      input
+        font-size: 18px
+
+  .searchResults
+    border-top: 1px #fefefe solid
+    border-bottom: 1px #ddd solid
+    background-color: #fafafa
+    font-size: 12px
+    padding: 5px 0px 0px 0px
+    min-height: 10px
+
+    @media (min-width: 400px)
+      font-size: 16px
+
+
+    ul
+      list-style: none
+      padding: 0
+      margin: 0
+
+    ul li
+      margin-bottom: 5px
+      clear: both
+      width: 100%
+      border-top: 1px solid #e8e8e8
+
+      .heading
+        margin: 5px 5px 5px 5px
+
+        span.arrow
+          color: #aaa
+
+      .streetSide
+        width: 48%
+        float: left
+
+        .sideHeading
+          text-align: center
+          margin: 5px 0px 5px 0px
+          font-style: italic
+          color: #888
+        ul
+    
+          li
+            padding: 5px 5px 5px 0px
+            margin: 5px 5px 5px 0px
+            text-align: center
+            border-top: none
+            border-bottom: none
+
+            .schoolName
+              font-weight: bold
+
+            .streetNumbering
+              font-size: 14px
+              margin-bottom: 3px
+
+              .number
+                display: inline-block
+                padding: 3px 6px 3px 6px
+                background-color: #fff
+                border-radius: 2px
+                border: 1px solid #ddd
+
+    ul li:first-child
+      border-top: none
+
+    .streetSide.even
+      margin-left: 5px
+
+    .streetSide.even .ul
+      border-left: dotted 1px #888
