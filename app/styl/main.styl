@@ -52,11 +52,15 @@ body
         clear: both
 
         .heading
-          margin: 5px 0px 5px 0px
+          margin: 5px 0px 10px 0px
 
         .streetSide
           width: 45%
           float: left
+          color: #333
+
+          .sideHeading
+            text-align: center
 
           ul
             padding: 0
@@ -64,16 +68,24 @@ body
             li
               padding: 5px 5px 5px 0px
               margin: 5px 5px 5px 0px
-              background-color: #eee
               text-align: center
 
               .schoolName
                 font-weight: bold
-        
-        .streetSide.odd
-          ul
-            border-right: 1px solid #ddd
-  
+
+              .streetNumbering
+                font-size: 14px
+                margin-bottom: 3px
+
+                .number
+                  display: inline-block
+                  padding: 3px 6px 3px 6px
+                  background-color: #fff
+                  border-radius: 2px
+                  border: 1px solid #ddd
+
+
+
         .streetSide.even
           margin-left: 5px
 
