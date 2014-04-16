@@ -79,7 +79,6 @@ body
 
     ul li
       margin-bottom: 10px
-      clear: both
       width: 100%
       border-top: 1px solid #e8e8e8
 
@@ -89,19 +88,21 @@ body
         span.arrow
           color: #aaa
 
-      .streetSide
-        width: 48%
-        float: left
-
-        .sideHeading
-          margin: 5px 0px 5px 0px
-          font-style: italic
-          color: #888
         ul
+          width: 48%
+          float: left
+
           li
             padding: 5px 5px 5px 0px
             border-top: none
             border-bottom: none
+            text-align: center
+
+            &.sideHeading
+                margin: 5px 0px 5px 0px
+                font-style: italic
+                color: #888
+      
 
             .schoolName
               margin-top: 10px
@@ -121,8 +122,3 @@ body
     ul li:first-child
       border-top: none
 
-    .streetSide.even
-      margin-left: 5px
-
-    .streetSide.even .ul
-      border-left: dotted 1px #888

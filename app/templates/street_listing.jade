@@ -15,9 +15,8 @@ else
       | I 
       strong #{street.street}
       |  kommer det an på gatenummeret ditt
-    .streetSide.odd
-      .sideHeading Den ene siden av gata
-      ul
+      ul.streetSide.odd
+        li.sideHeading Den ene siden av gata
         each stretch in odd
           li
             .streetNumbering
@@ -27,9 +26,8 @@ else
             .schoolName
               = stretch.school
               |  skole
-    .streetSide.even
-      .sideHeading Den andre
-      ul
+      ul.streetSide.even
+        li.sideHeading På den andre
         each stretch in even
           li
             .streetNumbering
