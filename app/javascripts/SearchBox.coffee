@@ -29,11 +29,6 @@ module.exports = class SearchBox
         @addressDict[address.street].push(address)
 
       $("input#streetName").keyup(@updateView)
-      # $("input#streetName").focus ()->
-      #   $(".searchResults").slideDown()
-      # $("input#streetName").blur ()->
-      #   $(".searchResults").slideUp() unless $("input#streetName").val() != ""
-
 
   capitaliseFirstLetter: (string) ->
     string = string.toLowerCase()
