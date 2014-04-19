@@ -64,7 +64,7 @@ module.exports = class SearchBox
 
     expression = ""
     len = matchString.length - 1
-    expression += matchString.charAt(i) + "+.*?" for i in [0..len]
+    expression += matchString.charAt(i) + "+.?" for i in [0..len]
     re = new RegExp(expression, "i")
 
     Object.keys(@addressDict).every (street)=>
