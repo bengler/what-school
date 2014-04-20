@@ -3,15 +3,11 @@ module.exports = class MapControl
     @markerDict = {}
     @map = L.map('map',
         scrollWheelZoom: false
-        zoomControl: false
       )
       .setView([59.9218, 10.73427], 10)
       .addLayer(L.mapbox.tileLayer('examples.map-20v6611k',
         detectRetina: true
     ))
-
-    zoomControl = new L.Control.Zoom({position: 'topright'})
-    @map.addControl(zoomControl)
 
     svg = d3.select(@map.getPanes().overlayPane).append("svg")
     g = svg.append("g").attr("class", "leaflet-zoom-hide")
