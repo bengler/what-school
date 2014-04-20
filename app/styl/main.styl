@@ -1,0 +1,38 @@
+// Useful mixins for CSS3 effects.
+@import 'nib'
+
+@import 'mapbox'
+
+@import '_variables'
+@import '_mixins'
+@import '_searchResult'
+@import '_mapControl'
+
+@import '_typography'
+
+body
+  margin: 0 auto
+  color: #333
+  background-color: #fafafa
+  max-width: 800px
+
+  @media (min-width: 800px)
+    border: 1px solid #eee
+
+  .clear
+    clear:both
+
+  .footer
+    padding: 20px
+    color: #888
+    font-weight: 300
+    a
+      color: #444
+    ul
+      li
+        margin-bottom: 6px
+
+  .content
+    padding-left: 20px
+
+ 
