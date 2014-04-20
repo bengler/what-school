@@ -13,14 +13,14 @@ html(lang='en')
   head
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
-    title Hvor skal barna gå på skolen?
+    title Hvilken barneskole hører dere til?
 
     link(rel='stylesheet', href='stylesheets/app.css', type='text/css')
-    link(href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css', rel='stylesheet')
-    link(href='http://fonts.googleapis.com/css?family=Roboto:400,900,100,500,700,300', rel='stylesheet', type='text/css')
-    script(src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js')
-    script(src="http://d3js.org/d3.v3.min.js", charset="utf-8")
-    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js", charset="utf-8")
+    //- link(href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css', rel='stylesheet')
+    //- link(href='http://fonts.googleapis.com/css?family=Roboto:400,900,100,500,700,300', rel='stylesheet', type='text/css')
+    //- script(src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js')
+    //- script(src="http://d3js.org/d3.v3.min.js", charset="utf-8")
+    //- script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js", charset="utf-8")
     meta(name='viewport', content='initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width')
 
   body
@@ -31,9 +31,16 @@ html(lang='en')
 
     .content.footer
       small 
+        strong Verdt å merke seg
+        ul
+          li Kommunen forsøker å få dere inn på den nærmeste skolen eller skolen som er i området dere bor i – men kanke garantere noe
+          li Dere kan søke om å bytte skole om dere vil
+
+    .content.footer
+      small 
         strong Hvorfor finnes denne siden? 
         | Etter å ha sett de 
-        a(href="http://www.utdanningsetaten.oslo.kommune.no/skoletilhoerighet/") 90 PDF sidene og kartløsningen
+        a(href="http://www.utdanningsetaten.oslo.kommune.no/skoletilhoerighet/") 51 PDF sidene og kartene
         |  Oslo Kommune hadde på sidene sine tenkte jeg det var verdt å lage en liten skisse for å se om det hele kunne forenkles litt. Om du jobber i en kommune og vil titte på kildekoden ligger den på  
         a(href="https://github.com/bengler/what-school") Github
         | . Vennlig hilsen 
@@ -43,7 +50,6 @@ html(lang='en')
     script(src='javascripts/vendor.js')
     script(src='javascripts/template.js')
     script(src='javascripts/app.js')
-
     script.
       require('initialize');
 

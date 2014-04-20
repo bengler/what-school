@@ -1,27 +1,24 @@
 // Useful mixins for CSS3 effects.
 @import 'nib'
-
-// Make browsers render HTML elements consistently.
-@import 'normalize'
-
+@import 'mapbox.css'
 
 @import '_variables'
 @import '_mixins'
 
 @import '_typography'
 
-
 body 
-  margin: 0
+  margin: 0 auto
+  color: #333
+  background-color: #fafafa
+  max-width: 800px
 
-  h1
-    background-image: url(../images/letters.jpg)
-    background-size: cover
-    color: white
-    margin: 0
-    padding: 20px 20px 20px 20px
-    font-size: 40px
-    text-shadow: 0px 1.5px 0px #000
+  @media (min-width: 800px)
+    border: 1px solid #eee
+
+
+  .clear
+    clear:both
 
   .footer
     padding: 20px
@@ -29,67 +26,9 @@ body
     font-weight: 300
     a
       color: #444
-
-  form
-    input
-      margin-top: 10px
-      display: block
-      font-size: 20px
-
-    .searchResults
-      display: none
-      font-size: 12px
-      overflow: scroll
-      padding-top: 5px
-      height: 300px
-
-      ul
-        padding-left: 10px
-        list-style: none
-
-      ul li
-        margin-bottom: 5px
-        clear: both
-
-        .heading
-          margin: 5px 0px 10px 0px
-
-        .streetSide
-          width: 45%
-          float: left
-          color: #333
-
-          .sideHeading
-            text-align: center
-
-          ul
-            padding: 0
-
-            li
-              padding: 5px 5px 5px 0px
-              margin: 5px 5px 5px 0px
-              text-align: center
-
-              .schoolName
-                font-weight: bold
-
-              .streetNumbering
-                font-size: 14px
-                margin-bottom: 3px
-
-                .number
-                  display: inline-block
-                  padding: 3px 6px 3px 6px
-                  background-color: #fff
-                  border-radius: 2px
-                  border: 1px solid #ddd
-
-
-
-        .streetSide.even
-          margin-left: 5px
-
-
+    ul
+      li
+        margin-bottom: 6px
 
   .content
     padding-left: 20px
@@ -100,19 +39,109 @@ body
     @media (max-width: 320px)
       height: 300px
 
-    .leaflet-container .leaflet-popup-content h2 
-      font-size: 20px
+    svg
+      path
+        fill: #fff
+        fill-opacity: 0.1
+        stroke: #048
+        stroke-width: 1.0px
+        stroke-dasharray: 2,2
 
-  svg
-    path
-      fill: #fff
-      fill-opacity: 0.1
-      stroke: #048
-      stroke-width: 1.5px
-      // stroke-dasharray: 2,2
-      // stroke-linejoin: round
+      // Don't need hover state
+      // path:hover
+      //   fill: #fff
+      //   fill-opacity: 0.6
 
-    path:hover
-      fill: #fff
-      fill-opacity: 0.6
+  form
+    padding-right: 20px
+
+    label
+      display: block
+      margin-bottom: 10px
+
+    .inputWrapper
+      display: inline-block
+      border-radius: 6px 6px 0px 0px
+      display: block
+      padding: 8px 0px 0px 0px
+      width: 100%
+
+      input
+        border-radius: 3px 3px 0px 0px
+        border: 2px inset
+        font-weight: 100
+        min-width: 255px
+        width: 50%
+        padding: 5px 10px 5px 10px
+
+  .searchResults
+    background-image: -o-linear-gradient(-90deg, #f8f8f8 0%, #fff 100%)
+    background-image: -moz-linear-gradient(-90deg, #f8f8f8 0%, #fff 100%)
+    background-image: -webkit-linear-gradient(-90deg, #f8f8f8 0%, #fff 100%)
+    background-image: -ms-linear-gradient(-90deg, #f8f8f8 0%, #fff 100%)
+    background-image: linear-gradient(-180deg, #f8f8f8 0%, #fff 100%)
+    -moz-box-shadow:    0px 1px 1px 0px rgba(80,80,80,0.10)
+    -webkit-box-shadow: 0px 1px 1px 0px rgba(80,80,80,0.10)
+    box-shadow:         0px 1px 1px 0px rgba(80,80,80,0.10)
+
+    border-top: 1px #fefefe solid
+    border-bottom: 1px #ddd solid
+    font-size: 12px
+    padding: 5px 0px 0px 0px
+    min-height: 10px
+
+    @media (min-width: 400px)
+      font-size: 16px
+
+    ul
+      list-style: none
+      padding: 0
+      margin: 0
+
+    ul li
+      margin-bottom: 10px
+      width: 100%
+      border-top: 1px solid #e8e8e8
+      clear: both
+
+      .heading
+        margin: 10px 5px 5px 5px
+        display: inline-block
+
+        span.arrow
+          color: #aaa
+
+        ul
+          width: 48%
+          float: left
+
+          li
+            padding: 5px 5px 5px 0px
+            border-top: none
+            border-bottom: none
+            text-align: center
+
+            &.sideHeading
+                margin: 10px 0px 5px 0px
+                font-style: italic
+                color: #888
+
+            .schoolName
+              margin-top: 5px
+              font-weight: bold
+
+            .streetNumbering
+              margin-bottom: 3px
+              color: #aaa
+
+              .number
+                display: inline-block
+                padding: 3px 6px 3px 6px
+                background-color: #fff
+                border-radius: 2px
+                border: 1px solid #bbb
+                color: #444
+
+    ul li:first-child
+      border-top: none
 

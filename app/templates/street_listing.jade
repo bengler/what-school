@@ -1,32 +1,41 @@
 if street.entireStreet == true
-  li ➳ Hele 
-    strong #{street.street}
-    | går på 
-    strong #{street.school} skole
+  li 
+   .heading
+      span.arrow 
+        ➳ 
+      | Hele 
+      strong #{street.street}
+      | går på 
+      strong #{street.school} skole
 else
   li 
-    .heading ➳ I 
+    .heading 
+      span.arrow 
+        ➳ 
+      | I 
       strong #{street.street}
-      |  kommer det an på gatenummeret ditt
-    .streetSide.odd 
-      .sideHeading Den ene siden av gata
-      ul
+      |  kommer det an på gatenummeret
+      ul.streetSide.odd
+        li.sideHeading På ene siden av gata…
         each stretch in odd
           li
             .streetNumbering
               .number= stretch.oddStart
-              |  - 
+              | &nbsp;&nbsp;&nbsp;–&nbsp;&nbsp;  
               .number= stretch.oddEnd
             .schoolName
               = stretch.school
-    .streetSide.even
-      .sideHeading Den andre siden
-      ul
+              |  skole
+      ul.streetSide.even
+        li.sideHeading  … og på den andre
         each stretch in even
           li
             .streetNumbering
               .number= stretch.evenStart
-              |  - 
+              | &nbsp;&nbsp;&nbsp;–&nbsp;&nbsp;  
               .number= stretch.evenEnd
             .schoolName
               = stretch.school
+              |  skole
+
+  .clear

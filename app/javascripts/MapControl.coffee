@@ -57,18 +57,19 @@ module.exports = class MapControl
 
         feature.attr("d", path)
 
-      topo = topojson.feature(collection, collection.objects.school_boundaries);
+      topo = topojson.mesh(collection, collection.objects.school_boundaries);
       transform = d3.geo.transform({point: (x,y)->projectStream(x,y,this)})
       path = d3.geo.path().projection(transform)
 
-      feature = g.selectAll("path")
-        .data(topo.features)
-        .enter().append("path")
+      console.info topo
+
+      feature = g.append("path")
+        .datum(topo)
 
       @map.on("viewreset", reset)
 
       reset()
 
-  project: (point)=>
-    point = @map.latLngToLayerPoint(new L.LatLng(point[1], point[0])) 
-    return point.x + "," + point.y
+  # project: (point)=>
+  #   point = @map.latLngToLayerPoint(new L.LatLng(point[1], point[0])) 
+  #   return point.x + "," + point.y

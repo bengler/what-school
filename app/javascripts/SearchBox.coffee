@@ -29,11 +29,6 @@ module.exports = class SearchBox
         @addressDict[address.street].push(address)
 
       $("input#streetName").keyup(@updateView)
-      $("input#streetName").focus ()->
-        $(".searchResults").slideDown()
-      $("input#streetName").blur ()->
-        $(".searchResults").slideUp() unless $("input#streetName").val() != ""
-
 
   capitaliseFirstLetter: (string) ->
     string = string.toLowerCase()
@@ -74,7 +69,7 @@ module.exports = class SearchBox
 
     Object.keys(@addressDict).every (street)=>
       matches.push(@addressDict[street]) if re.test(street)
-      return false if matches.length > 5
+      return false if matches.length > 10
       return true
 
     return matches 
