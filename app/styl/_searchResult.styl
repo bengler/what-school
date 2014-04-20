@@ -39,6 +39,13 @@ form
   @media (min-width: 400px)
     font-size: 16px
 
+  .schoolName
+    margin-top: 5px
+    display: inline
+    color: #08a
+    text-decoration: underline
+    cursor: pointer
+
   ul
     list-style: none
     padding: 0
@@ -57,36 +64,35 @@ form
       span.arrow
         color: #aaa
 
-      ul
-        width: 48%
-        float: left
+    ul
+      width: 48%
+      float: left
 
-        li
-          padding: 5px 5px 5px 0px
-          border-top: none
-          border-bottom: none
-          text-align: center
+      li
+        padding: 5px 5px 5px 0px
+        border-top: none
+        border-bottom: none
+        text-align: center
 
-          &.sideHeading
-              margin: 10px 0px 5px 0px
-              font-style: italic
-              color: #888
+        &.sideHeading
+            margin: 10px 0px 5px 0px
+            font-style: italic
+            color: #888
+
+        .streetNumbering
+          margin-bottom: 3px
+          color: #aaa
 
           .schoolName
-            margin-top: 5px
-            font-weight: bold
+            display: block
 
-          .streetNumbering
-            margin-bottom: 3px
-            color: #aaa
-
-            .number
-              display: inline-block
-              padding: 3px 6px 3px 6px
-              background-color: #fff
-              border-radius: 2px
-              border: 1px solid #bbb
-              color: #444
+          .number
+            display: inline-block
+            padding: 3px 6px 3px 6px
+            background-color: #fff
+            border-radius: 2px
+            border: 1px solid #bbb
+            color: #444
 
   ul li:first-child
     border-top: none

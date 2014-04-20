@@ -1,41 +1,45 @@
 module.exports = class MapControl
 	constructor: ->
-    @map = L.map('map', {
-      scrollWheelZoom: false
-      })
-      .setView([59.9218, 10.73427], 11)
-      .addLayer(L.mapbox.tileLayer('examples.map-20v6611k', {
+    @markerDict = {}
+    @map = L.map('map',
+        scrollWheelZoom: false
+        zoomControl: false
+      )
+      .setView([59.9218, 10.73427], 10)
+      .addLayer(L.mapbox.tileLayer('examples.map-20v6611k',
         detectRetina: true
-    }))
+    ))
+
+    zoomControl = new L.Control.Zoom({position: 'topright'})
+    @map.addControl(zoomControl)
 
     svg = d3.select(@map.getPanes().overlayPane).append("svg")
     g = svg.append("g").attr("class", "leaflet-zoom-hide")
 
     d3.json "data/primaries.json", (collection)=> 
-
-      smallIcon = L.icon({
+      smallIcon = L.icon(
           iconUrl: 'images/small_icon.png',
           iconRetinaUrl: 'images/small_icon@2x.png',
           iconSize:     [20, 20], 
           iconAnchor:   [10, 10], 
           popupAnchor:  [0, -1] 
-      })
+      )
 
       popupTemplate = require "templates/popup"
 
-
-      onEachFeature = (feature, layer)->
+      onEachFeature = (feature, layer)=>
         properties = feature.properties
         if properties
           layer.bindPopup(popupTemplate(properties: properties))
 
-      pointToLayer = (feature, latlng)->
-        marker = L.marker(latlng, {icon: smallIcon});
+      pointToLayer = (feature, latlng)=>
+        marker = L.marker(latlng, {icon: smallIcon})
+        @markerDict[feature.properties.NAVN] = marker
 
-      L.geoJson(collection, {
-        pointToLayer: pointToLayer,
-        onEachFeature: onEachFeature,
-        }).addTo(@map)
+      L.geoJson(collection,
+        pointToLayer: pointToLayer
+        onEachFeature: onEachFeature
+        ).addTo(@map)
 
     d3.json "data/school_boundaries.topo.json", (collection)=> 
     
@@ -67,3 +71,10 @@ module.exports = class MapControl
       @map.on("viewreset", reset)
 
       reset()
+
+  focusOnSchoolName: (name)->
+    window.location = "#map"
+    console.info @markerDict[name]
+    marker = @markerDict[name]
+    marker.openPopup()
+    @map.setView(marker._latlng, 13)

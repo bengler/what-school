@@ -1,7 +1,7 @@
 
 module.exports = class SearchBox
-	constructor: () ->
-
+	constructor: (controller) ->
+    @controller = controller
     @streetTemplate = require "templates/street_listing"
 
     d3.csv "data/addresses.csv", (@addresses)=> 
@@ -52,6 +52,8 @@ module.exports = class SearchBox
 
     html = html + "</ul>"
     $(".searchResults").html(html)
+    $(".searchResults .schoolName").click (e)=>
+      @controller.focusOnSchoolName(e.currentTarget.innerText)
 
 	search: (matchString)=>
     # TODO: Add sorting on levenshtein distance
