@@ -1,4 +1,11 @@
 #!/bin/bash
+#
+# Note: we shouldn't need to do this. Rather we should be doing this live from the data endpoints
+# from the Municipality of Oslo. But they don't offer geojson on their WFS and we don't want to build
+# a server side for this – as serving from github is _so_ much more maintainable for hobby projects
+#
+
+
 echo "Snarfing files from WFS"
 mkdir tmp_snarf
 cd tmp_snarf

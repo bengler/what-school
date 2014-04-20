@@ -8,9 +8,14 @@
 @import '_typography'
 
 body 
-  margin: 0
+  margin: 0 auto
   color: #333
   background-color: #fafafa
+  max-width: 800px
+
+  @media (min-width: 800px)
+    border: 1px solid #eee
+
 
   .clear
     clear:both
@@ -24,7 +29,6 @@ body
     ul
       li
         margin-bottom: 6px
-
 
   .content
     padding-left: 20px
@@ -40,11 +44,13 @@ body
         fill: #fff
         fill-opacity: 0.1
         stroke: #048
-        stroke-width: 1.5px
+        stroke-width: 1.0px
+        stroke-dasharray: 2,2
 
-      path:hover
-        fill: #fff
-        fill-opacity: 0.6
+      // Don't need hover state
+      // path:hover
+      //   fill: #fff
+      //   fill-opacity: 0.6
 
   form
     padding-right: 20px
