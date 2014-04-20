@@ -61,15 +61,9 @@ module.exports = class MapControl
       transform = d3.geo.transform({point: (x,y)->projectStream(x,y,this)})
       path = d3.geo.path().projection(transform)
 
-      console.info topo
-
       feature = g.append("path")
         .datum(topo)
 
       @map.on("viewreset", reset)
 
       reset()
-
-  # project: (point)=>
-  #   point = @map.latLngToLayerPoint(new L.LatLng(point[1], point[0])) 
-  #   return point.x + "," + point.y
