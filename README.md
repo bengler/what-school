@@ -5,26 +5,26 @@ A single evening suggestion as to how one might formulate a service to let you f
 
 ## Features
 
-- Lovely retina tiles from mapbox
-- GeoJSON rendered directly in D3
+- Simple UI, reduced complexity
+- Nominally universally accessible (map icons are keyboard navigable, etc)
+- Interoparable maps – can use tiles from anywhere
+- Retina tiles from mapbox
+- School boundaries rendered client side from topojson
 - Fuzzy front end text search
-
-## Requirements
-
-- node
-- brunch
-- ogr2ogr (for producing new snapshots of the school locations and their boundaries from GML)
+- No server side, only client side JS and static files
 
 ## Install
 
 ```
+cd what-school
+npm -g install brunch topojson
 npm install
-npm -g install brunch
 brunch w -s
 ```
 
 To update the boundaries and school locations run
 ```
+brew install ogr2ogr
 ./scripts/shapshot.sh
 ```
 
@@ -36,13 +36,13 @@ If you want to run this in production you might want to do some of the following
 
 - The school boundaries are batch converted to static files instead of being loaded directly from the WFS. Either the municipality needs to upgrade their servers to support newfangled formats like GeoJSON or there should be a small server that converts and possibly caches this.
 
-- For street level search the entire file of 4k streets is shipped to the client and searched with regexps. It's only 120k and would shrink to 20k if gzipped on the server. You should consider doing the search server side. Remember to use fuzzy search and ranking on similarity.
+- For street level search the entire file of 4k streets is shipped to the client and searched with regexps. It's only 120k and would shrink to about 20k if gzipped on the server. You might consider doing the search server side. Remember to use fuzzy search and rank on levenshtein or other similarity.
 
 - You could skip jquery and some chunks of d3 for space savings
 
 - You should have a look at javascript and universal access
 
-- Known bugs: map popups have difficulty on Android chrome.
+- Known bugs: map popups don't trigger properly difficulty on Android chrome.
 
-- ~~The geometry for the boundaries could be about 1/10 of the size if simplified and converted to topoJSON.~~ Fixed, and they went from 876Kb to 100Kb. Win.
+- ~~The geometry for the boundaries could be about 1/10 of the size if simplified and converted to topoJSON.~~ Fixed, and they went from 876Kb to 90Kb. Win.
 
