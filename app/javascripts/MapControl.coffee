@@ -5,9 +5,11 @@ module.exports = class MapControl
         scrollWheelZoom: false
       )
       .setView([59.9218, 10.73427], 10)
-      .addLayer(L.mapbox.tileLayer('examples.map-20v6611k',
+      # .addLayer(L.mapbox.tileLayer('examples.map-20v6611k',
+      .addLayer(L.mapbox.tileLayer('evenwestvang.hp8gagn1',
         detectRetina: true
     ))
+
 
     svg = d3.select(@map.getPanes().overlayPane).append("svg")
     g = svg.append("g").attr("class", "leaflet-zoom-hide")

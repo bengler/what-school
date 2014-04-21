@@ -11,9 +11,9 @@ echo "Building compressed project"
 brunch b -P
 
 cp -R public/ "../what-school-gh-pages/"
-# cd ../what-school-gh-pages
-# git add -A
-# git commit -m "Generating new site"
-# git push
+cd ../what-school-gh-pages
+git add -A
+git commit -m "Generating new site"
+git push
 
 echo "Done"
