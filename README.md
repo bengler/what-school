@@ -42,7 +42,8 @@ If you want to run this in production you might want to do some of the following
 
 - You should have a look at javascript and universal access
 
-- Known bugs: map popups don't trigger properly difficulty on Android chrome.
+- Known bugs 1: map popups don't trigger properly difficulty on Android chrome.
+
 
 - ~~The geometry for the boundaries could be about 1/10 of the size if simplified and converted to topoJSON.~~ Fixed, and they went from 876Kb to 90Kb. Win.
 
