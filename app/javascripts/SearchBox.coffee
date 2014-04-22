@@ -5,9 +5,9 @@ module.exports = class SearchBox
     @controller = controller
     @streetTemplate = require "templates/street_listing"
 
-    @loadingPromise = new Promise (resolve, reject)=>
+    @loadingPromise = new Promise (resolve, reject) =>
 
-      d3.csv "data/addresses.csv", (@addresses)=> 
+      d3.csv "data/addresses.csv", (@addresses) => 
         @addressDict = {}
         @addresses.forEach (address)=>
 
@@ -19,19 +19,41 @@ module.exports = class SearchBox
           address.street = @capitaliseFirstLetter(address.street)
           address.school = @capitaliseFirstLetter(address.school)
 
-          if (address.oddStart == 1 || address.oddStart == 0) && (address.evenStart == 2 || address.evenStart == 0) && (address.oddEnd == 9999 || address.oddEnd == 0) && (address.evenEnd == 9998 || address.evenEnd == 0)
-            address.entireStreet =  true
-          else
-            address.entireStreet = false
+          oneSchool = false
+          oneSchool = true if (address.oddStart == 1) && (address.evenStart == 2) && (address.oddEnd == 9999) && (address.evenEnd == 9998)
 
-          address.oddEnd = "slutten" if address.oddEnd == 9999
-          address.evenEnd = "slutten" if address.evenEnd == 9998
+          if !@addressDict[address.street]?
+            street = {
+              streetName: address.street
+              oneSchool: oneSchool
+            }
 
-          @addressDict[address.street] = [] if !@addressDict[address.street]?
-          @addressDict[address.street].push(address)
+            if oneSchool
+              street.school = address.school
+            else
+              street.oddNumbers = []
+              street.evenNumbers = []
+
+            @addressDict[address.street] = street
+
+          # General ruges vei ?!
+
+          if !oneSchool
+            if address.oddStart != 0 && address.oddEnd != 0
+              @addressDict[address.street].oddNumbers.push {
+                school: address.school
+                range: [address.oddStart, address.oddEnd]
+              }
+
+            if address.evenStart != 0 && address.evenEnd != 0
+              @addressDict[address.street].evenNumbers.push {
+                school: address.school
+                range: [address.evenStart, address.evenEnd]
+              }
 
         resolve(1)
-        $("input#streetName").keyup(@keyEvent)
+        $("input#streetName").keydown(@throttle((event) => @keyEvent(event)))
+        $("input#streetName").keyup(@throttle((event) => @keyEvent(event)))
         $("input#streetName").change(@updateView)
 
   setQuery: (string) ->
@@ -43,25 +65,33 @@ module.exports = class SearchBox
     string = string.toLowerCase()
     string.charAt(0).toUpperCase() + string.slice(1);
 
-  keyEvent: (event) =>
+  keyEvent: (e) =>
+    # We don't want the form to submit and have application/x-www-form-urlencoded streets in our URL
+    if (e.keyCode == 13)
+      e.preventDefault()
+      e.stopPropagation()
+      return false
+
     @updateView()
-    history.pushState({}, "", "?streetName=" + $("input#streetName").val())
+    history.replaceState({}, "", "?streetName=" + encodeURI($("input#streetName").val()))
 
   updateView: () =>
     fieldValue = $("input#streetName").val()
-    streets = @search(fieldValue)
+    result = @search(fieldValue)
+
+    streets = result.matches
 
     html = "<ul>"
-    streets.forEach (stretches)=>
-
+    console.info streets
+    streets.forEach (street)=>
       # TODO: Double filtering is an artefact of awkward data structure. Refactor.
-      odd = stretches.sort (a,b)-> a.oddStart > b.oddStart
-      odd = odd.filter (a)-> ! (a.oddStart == 0)
+      # odd = stretches.sort (a,b)-> a.oddStart > b.oddStart
+      # odd = odd.filter (a)-> ! (a.oddStart == 0)
 
-      even = stretches.sort (a,b)-> a.evenStart > b.evenStart
-      even = even.filter (a)-> ! (a.evenStart == 0)
+      # even = stretches.sort (a,b)-> a.evenStart > b.evenStart
+      # even = even.filter (a)-> ! (a.evenStart == 0)
 
-      html += @streetTemplate(street: stretches[0], even: even, odd: odd)
+      html += @streetTemplate(street: street)
 
     html = html + "</ul>"
     $(".searchResults").html(html)
@@ -71,10 +101,15 @@ module.exports = class SearchBox
 	search: (matchString)=>
     # TODO: Add sorting on levenshtein distance
 
-    # HACK: For people looking down when they type. Make sure they don't overspecify their street    
-    if (digitPosition = matchString.search(/\d/g)) > 0
-      matchString = matchString.slice(0,digitPosition)
+    digitMatch = matchString.match(/\d+/g)
 
+    if digitMatch
+      digit = digitMatch[0] 
+      matchString = matchString.slice(0,matchString.search(/\d/))
+
+    digit ||= 0
+
+    # don't care about spaces
     matchString = matchString.replace(/\s/g, '')
     matches = []
 
@@ -91,5 +126,18 @@ module.exports = class SearchBox
       return false if matches.length > 10
       return true
 
-    return matches 
-
+    return {
+      digit: digit
+      matches: matches 
+    }
+  # Simple throttling function to cut back on searches on mobile
+  throttle: (fn, delay) ->
+    delay ||= 300
+    timer = null
+    return ()->
+      context = this
+      args = arguments
+      clearTimeout(timer)
+      timer = setTimeout( ()->
+        fn.apply(context, args)
+      , delay)

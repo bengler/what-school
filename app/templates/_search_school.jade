@@ -1,8 +1,7 @@
 .content
-  h2 Søk etter gata deres
-  form(autocomplete="off")
-    label(for="streetName") Hvilken gate bor dere i?
+  h2 Søk på adressen din
+  form(autocomplete="off", enctype="application/x-www-form-urlencoded", method="get")
+    label(for="streetName") Hvor er det du bor?
     .inputWrapper
       input(id="streetName", autocomplete="off", type="text", name="streetName", placeholder="Skriv inn gaten din")
 .searchResults
-      

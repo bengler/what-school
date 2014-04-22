@@ -1,10 +1,10 @@
-if street.entireStreet == true
+if street.oneSchool
   li 
    .heading
       span.arrow 
         ➳ 
       | Hele 
-      strong #{street.street}
+      strong #{street.streetName}
       | går på 
       .schoolName #{street.school} skole
 else
@@ -13,29 +13,29 @@ else
       span.arrow 
         ➳ 
       | I 
-      strong #{street.street}
-      |  kommer det an på gatenummeret
-      ul.streetSide.odd
-        li.sideHeading På ene siden av gata…
-        each stretch in odd
-          li
-            .streetNumbering
-              .number= stretch.oddStart
-              | &nbsp;&nbsp;&nbsp;–&nbsp;&nbsp;  
-              .number= stretch.oddEnd
-            .schoolName
-              = stretch.school
-              |  skole
-      ul.streetSide.even
-        li.sideHeading  … og på den andre
-        each stretch in even
-          li
-            .streetNumbering
-              .number= stretch.evenStart
-              | &nbsp;&nbsp;&nbsp;–&nbsp;&nbsp;  
-              .number= stretch.evenEnd
-            .schoolName
-              = stretch.school
-              |  skole
+      strong #{street.streetName}
+      |  kommer det an på gatenummeret ditt.
+      //- ul.streetSide.odd
+      //-   li.sideHeading På ene siden av gata…
+      //-   each stretch in odd
+      //-     li
+      //-       .streetNumbering
+      //-         .number= stretch.oddStart
+      //-         | &nbsp;&nbsp;&nbsp;–&nbsp;&nbsp;  
+      //-         .number= stretch.oddEnd
+      //-       .schoolName
+      //-         = stretch.school
+      //-         |  skole
+      //- ul.streetSide.even
+      //-   li.sideHeading  … og på den andre
+      //-   each stretch in even
+      //-     li
+      //-       .streetNumbering
+      //-         .number= stretch.evenStart
+      //-         | &nbsp;&nbsp;&nbsp;–&nbsp;&nbsp;  
+      //-         .number= stretch.evenEnd
+      //-       .schoolName
+      //-         = stretch.school
+      //-         |  skole
 
   .clear
