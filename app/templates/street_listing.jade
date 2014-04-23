@@ -1,50 +1,24 @@
 if street.oneSchool
   li 
-   .heading
-      | Hele 
-      strong #{street.streetName}
-      | går på 
-      .schoolName #{street.school} skole
+    | Hele 
+    strong #{street.streetName}
+    | går på 
+    .schoolName #{street.school} skole
 else
-  li 
-    .heading 
-      unless digit
-        | I 
+    unless digit
+      li.missingDigit
+        | For 
         strong #{street.streetName}
-        |  må du fortelle oss gatenummeret ditt også.
-      else
-        unless street.school 
+        |  må du skrive gatenummeret også
+    else
+      unless street.school 
+        li.notAnAddress
           | I 
           strong #{street.streetName} #{digit}
-          |  ser det ikke ut som det bor noen.
-        else
+          |  ser det ikke ut som det bor noen
+      else
+        li
           | I 
           strong #{street.streetName} #{digit}
           |  går de på 
           .schoolName #{street.school} skole
-
-
-      //- ul.streetSide.odd
-      //-   li.sideHeading På ene siden av gata…
-      //-   each stretch in odd
-      //-     li
-      //-       .streetNumbering
-      //-         .number= stretch.oddStart
-      //-         | &nbsp;&nbsp;&nbsp;–&nbsp;&nbsp;  
-      //-         .number= stretch.oddEnd
-      //-       .schoolName
-      //-         = stretch.school
-      //-         |  skole
-      //- ul.streetSide.even
-      //-   li.sideHeading  … og på den andre
-      //-   each stretch in even
-      //-     li
-      //-       .streetNumbering
-      //-         .number= stretch.evenStart
-      //-         | &nbsp;&nbsp;&nbsp;–&nbsp;&nbsp;  
-      //-         .number= stretch.evenEnd
-      //-       .schoolName
-      //-         = stretch.school
-      //-         |  skole
-
-  .clear

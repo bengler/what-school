@@ -1,6 +1,6 @@
-.mapControl.content
-  position: relative
-  margin-top: 0px
+.mapControl
+  h2
+    margin-bottom: 20px
 
 .leaflet-container 
   a
@@ -9,10 +9,13 @@
     margin: 2px 0px
   h2
     margin: 4px 0px
+    font-weight: 800
 
 #map 
   height: 500px
-
+  margin-top: 10px  
+  border-top: 1px solid darken($colBackground, 10%)
+  border-bottom: 1px solid darken($colBackground, 10%)
 
   @media (max-width: 360px)
     height: 340px
@@ -20,5 +23,6 @@
   svg
     path
       fill: none
-      stroke: #000
-      stroke-width: 1px
+      stroke: #309030
+      stroke-width: 1.5px
+

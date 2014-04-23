@@ -94,8 +94,10 @@ module.exports = class SearchBox
       $(".searchResults").html(html)
       $(".searchResults .schoolName").click (e)=>
         @controller.focusOnSchoolName(e.currentTarget.innerText)
+      $(".searchResults, .inputWrapper").addClass("populated")
     else
       $(".searchResults").html("")
+      $(".searchResults, .inputWrapper").removeClass("populated")
 
 	processInput: (matchString)=>
     # TODO: Add sorting on levenshtein distance

@@ -1,46 +1,63 @@
 // FONTS
 
-body
+body, input
   font-family: 'Lato', 'Helvetica Neue','Helvetica', sans-serif
 
 h1, h2, h3, h4
   font-weight: 500
   margin: 0 0 10px 0
 
+h1, h2, h3, h4, p, label, input
+  margin-left: 20px
+
 /* Text: */
 
 h1
   font-family: Lato
-  color: #026d99
   font-size: 45px
   line-height: 54px
-  margin-left: 20px
   margin-top: 15px
 
 h2
-  font-size: 20px
+  font-size: 22px
+  font-weight: 400
+  margin-bottom: 10px
 
-label
+label, p
   color: #666
   font-size: 14px
+  font-weight: 400
 
 input
   font-size: 18px
+  font-weight: 300
 
+.searchResults
+  font-size: 12px
+  font-weight: 300
+
+  .schoolName
+    text-decoration: none
+    border-bottom: 2px solid darken($colContrastForeground, 10%)
+    padding-bottom: 1px
+
+  .schoolName:hover
+    text-decoration: none
+    border-bottom: 2px solid $colContrastForeground
+    padding-bottom: 1px
 
 @media (min-width: 400px)
   h1
-    font-size: 54px
+    font-size: 42px
     line-height: 70px
     margin-top: 25px
   h2
     font-size: 30px
 
-  label
+  label, p
     font-size: 20px
 
   input
-    font-family: HelveticaNeue-Light, sans-serif
     font-size: 24px
 
   .searchResults

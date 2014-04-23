@@ -1,5 +1,4 @@
 form
-  padding-right: 20px
 
   label
     display: block
@@ -7,89 +6,60 @@ form
 
   .inputWrapper
     display: inline-block
-    border-radius: 6px 6px 0px 0px
     display: block
-    padding: 8px 0px 0px 0px
-    width: 100%
+    padding: 10px 5px 10px 0
+
+    transition-property: background-color
+    transition-duration: 0.3s
+    -webkit-transition-property: background-color
+    -webkit-transition-duration: 0.3s
+
+    &.populated
+      background-color: lighten($colContrast, 80%)
 
     input
-      border-radius: 3px 3px 0px 0px
       border: 2px inset
-      font-weight: 100
       min-width: 255px
       width: 50%
-      padding: 5px 10px 5px 10px
+      padding: 5px 5px 5px 10px
 
 .searchResults
-  background-image: -o-linear-gradient(-90deg, #f8f8f8 0%, #fff 100%)
-  background-image: -moz-linear-gradient(-90deg, #f8f8f8 0%, #fff 100%)
-  background-image: -webkit-linear-gradient(-90deg, #f8f8f8 0%, #fff 100%)
-  background-image: -ms-linear-gradient(-90deg, #f8f8f8 0%, #fff 100%)
-  background-image: linear-gradient(-180deg, #f8f8f8 0%, #fff 100%)
-  -moz-box-shadow:    0px 1px 1px 0px rgba(80,80,80,0.10)
-  -webkit-box-shadow: 0px 1px 1px 0px rgba(80,80,80,0.10)
-  box-shadow:         0px 1px 1px 0px rgba(80,80,80,0.10)
-
-  border-top: 1px #fefefe solid
-  border-bottom: 1px #ddd solid
-  font-size: 12px
-  padding: 5px 0px 0px 15px
+  margin: 0px 0 10px 0
+  padding: 0
   min-height: 10px
+  margin-bottom: 20px
+  transition-property: margin-bottom
+  transition-duration: 0.1s
+  -webkit-transition-property: margin-bottom
+  -webkit-transition-duration: 0.1s
+
+  &.populated
+    margin-bottom: 40px
 
   .schoolName
-    margin-top: 5px
     display: inline
-    color: #08a
-    text-decoration: underline
     cursor: pointer
+    font-weight: 800
 
   ul
     list-style: none
     padding: 0
     margin: 0
 
-  ul li
-    margin-bottom: 10px
-    width: 100%
-    border-top: 1px solid #e8e8e8
-    clear: both
+    li
+      padding: 10px 20px 10px 20px
+      background-color: $colContrast
+      color: white
+      border-top: 1px solid lighten($colContrast, 5%)
+      border-bottom: 1px solid darken($colContrast, 5%)
+    li.missingDigit
+      background-color: $colError
+      color: white
+      border-top: 1px solid lighten($colError, 5%)
+      border-bottom: 1px solid darken($colError, 5%)
+    li.notAnAddress
+      background-color: $colBackground
+      color: #666
+      border-top: 1px solid lighten($colBackground, 5%)
+      border-bottom: 1px solid darken($colBackground, 5%)
 
-    .heading
-      margin: 10px 5px 5px 5px
-      display: inline-block
-
-      span.arrow
-        color: #aaa
-
-    ul
-      width: 48%
-      float: left
-
-      li
-        padding: 5px 5px 5px 0px
-        border-top: none
-        border-bottom: none
-        text-align: center
-
-        &.sideHeading
-            margin: 10px 0px 5px 0px
-            font-style: italic
-            color: #888
-
-        .streetNumbering
-          margin-bottom: 3px
-          color: #aaa
-
-          .schoolName
-            display: block
-
-          .number
-            display: inline-block
-            padding: 3px 6px 3px 6px
-            background-color: #fff
-            border-radius: 2px
-            border: 1px solid #bbb
-            color: #444
-
-  ul li:first-child
-    border-top: none
