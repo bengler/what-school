@@ -1,8 +1,6 @@
 if street.oneSchool
   li 
    .heading
-      span.arrow 
-        ➳ 
       | Hele 
       strong #{street.streetName}
       | går på 
@@ -10,11 +8,22 @@ if street.oneSchool
 else
   li 
     .heading 
-      span.arrow 
-        ➳ 
-      | I 
-      strong #{street.streetName}
-      |  kommer det an på gatenummeret ditt.
+      unless digit
+        | I 
+        strong #{street.streetName}
+        |  må du fortelle oss gatenummeret ditt også.
+      else
+        unless street.school 
+          | I 
+          strong #{street.streetName} #{digit}
+          |  ser det ikke ut som det bor noen.
+        else
+          | I 
+          strong #{street.streetName} #{digit}
+          |  går de på 
+          .schoolName #{street.school} skole
+
+
       //- ul.streetSide.odd
       //-   li.sideHeading På ene siden av gata…
       //-   each stretch in odd

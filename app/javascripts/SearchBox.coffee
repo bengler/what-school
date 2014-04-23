@@ -1,9 +1,9 @@
 
-
 module.exports = class SearchBox
 	constructor: (controller) ->
     @controller = controller
     @streetTemplate = require "templates/street_listing"
+    @lastFieldValue = ""
 
     @loadingPromise = new Promise (resolve, reject) =>
 
@@ -36,8 +36,7 @@ module.exports = class SearchBox
 
             @addressDict[address.street] = street
 
-          # General ruges vei ?!
-
+          # Todo: Perhaps DRY this up
           if !oneSchool
             if address.oddStart != 0 && address.oddEnd != 0
               @addressDict[address.street].oddNumbers.push {
@@ -51,10 +50,18 @@ module.exports = class SearchBox
                 range: [address.evenStart, address.evenEnd]
               }
 
+        sortOnFirstValue = (array) ->
+          return undefined unless array
+          array.sort (a,b)-> a.range[0] > b.range[0]
+
+        Object.keys(@addressDict).forEach (key) =>
+          street = @addressDict[key]
+          sortOnFirstValue(street.oddNumbers)
+          sortOnFirstValue(street.evenNumbers)
+
         resolve(1)
-        $("input#streetName").keydown(@throttle((event) => @keyEvent(event)))
-        $("input#streetName").keyup(@throttle((event) => @keyEvent(event)))
-        $("input#streetName").change(@updateView)
+        $("input#streetName").keydown(_.throttle( (() => @keyEvent()) , 1000))
+        $("input#streetName").keyup(_.throttle( (() => @keyEvent()) , 1000))
 
   setQuery: (string) ->
     $("input#streetName").val(string)
@@ -66,41 +73,32 @@ module.exports = class SearchBox
     string.charAt(0).toUpperCase() + string.slice(1);
 
   keyEvent: (e) =>
-    # We don't want the form to submit and have application/x-www-form-urlencoded streets in our URL
-    if (e.keyCode == 13)
-      e.preventDefault()
-      e.stopPropagation()
-      return false
+    @currentFieldValue = $("input#streetName").val()
+    if @lastFieldValue != @currentFieldValue
+      history.replaceState({}, "", "?streetName=" + encodeURI(@currentFieldValue))
+      @lastFieldValue = $("input#streetName").val()
 
     @updateView()
-    history.replaceState({}, "", "?streetName=" + encodeURI($("input#streetName").val()))
 
   updateView: () =>
     fieldValue = $("input#streetName").val()
-    result = @search(fieldValue)
+    result = @processInput(fieldValue)
+    if result
+      streets = result.matches
 
-    streets = result.matches
+      html = "<ul>"
+      streets.forEach (street)=>
+        html += @streetTemplate(street: street, digit: result.digit)
+      html = html + "</ul>"
 
-    html = "<ul>"
-    console.info streets
-    streets.forEach (street)=>
-      # TODO: Double filtering is an artefact of awkward data structure. Refactor.
-      # odd = stretches.sort (a,b)-> a.oddStart > b.oddStart
-      # odd = odd.filter (a)-> ! (a.oddStart == 0)
+      $(".searchResults").html(html)
+      $(".searchResults .schoolName").click (e)=>
+        @controller.focusOnSchoolName(e.currentTarget.innerText)
+    else
+      $(".searchResults").html("")
 
-      # even = stretches.sort (a,b)-> a.evenStart > b.evenStart
-      # even = even.filter (a)-> ! (a.evenStart == 0)
-
-      html += @streetTemplate(street: street)
-
-    html = html + "</ul>"
-    $(".searchResults").html(html)
-    $(".searchResults .schoolName").click (e)=>
-      @controller.focusOnSchoolName(e.currentTarget.innerText)
-
-	search: (matchString)=>
+	processInput: (matchString)=>
     # TODO: Add sorting on levenshtein distance
-
     digitMatch = matchString.match(/\d+/g)
 
     if digitMatch
@@ -109,35 +107,39 @@ module.exports = class SearchBox
 
     digit ||= 0
 
-    # don't care about spaces
     matchString = matchString.replace(/\s/g, '')
-    matches = []
 
     if matchString == ""
-      return matches
+      return false
 
     expression = ""
     len = matchString.length - 1
     expression += matchString.charAt(i) + "+.?" for i in [0..len]
     re = new RegExp(expression, "i")
 
+    matches = []
+
     Object.keys(@addressDict).every (street)=>
       matches.push(@addressDict[street]) if re.test(street)
       return false if matches.length > 10
       return true
 
+    matches.forEach (street)=>
+
+      unless street.oneSchool && digit?
+        if digit % 2 == 0
+          side = "evenNumbers"
+        else
+          side = "oddNumbers"
+
+        matchedSchool = 0
+        street[side].forEach (schoolRange)->
+          if digit >= schoolRange.range[0] && digit <= schoolRange.range[1]
+            matchedSchool = schoolRange.school 
+          street.school = matchedSchool
+
     return {
       digit: digit
       matches: matches 
     }
-  # Simple throttling function to cut back on searches on mobile
-  throttle: (fn, delay) ->
-    delay ||= 300
-    timer = null
-    return ()->
-      context = this
-      args = arguments
-      clearTimeout(timer)
-      timer = setTimeout( ()->
-        fn.apply(context, args)
-      , delay)
+

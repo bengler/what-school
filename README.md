@@ -38,12 +38,11 @@ If you want to run this in production you might want to do some of the following
 
 - For street level search the entire file of 4k streets is shipped to the client and searched with regexps. It's only 120k and would shrink to about 20k if gzipped on the server. You might consider doing the search server side. Remember to use fuzzy search and rank on levenshtein or other similarity.
 
-- You could skip jquery and some chunks of d3 for space savings
+- We're feeling bloated: you could skip all of jquery and some chunks of d3 to save space. Es5shim and lodash can also be stricken.
 
-- You should have a look at javascript and universal access
+- Everything is keyboard navigable and color blindness proofed. But you should probably have a look at javascript and universal access. 
 
 - Known bugs 1: map popups don't trigger properly difficulty on Android chrome.
-
 
 - ~~The geometry for the boundaries could be about 1/10 of the size if simplified and converted to topoJSON.~~ Fixed, and they went from 876Kb to 90Kb. Win.
 
