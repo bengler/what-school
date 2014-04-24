@@ -60,8 +60,8 @@ module.exports = class SearchBox
           sortOnFirstValue(street.evenNumbers)
 
         resolve(1)
-        $("input#streetName").keydown(_.throttle( (() => @keyEvent()) , 1000))
-        $("input#streetName").keyup(_.throttle( (() => @keyEvent()) , 1000))
+        $("input#streetName").keydown(_.debounce( (() => @keyEvent()) , 500))
+        $("input#streetName").keyup(_.debounce( (() => @keyEvent()) , 500))
 
   setQuery: (string) ->
     $("input#streetName").val(string)
