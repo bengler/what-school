@@ -3,7 +3,7 @@ module.exports = class MapControl
 
     @markerDict = {}
     @map = L.mapbox.map('map','examples.map-20v6611k',{
-      scrollWheelZoom: false, layer: {detectRetina: true}}
+      scrollWheelZoom: false, tileLayer: {detectRetina: true}}
     )
 
     zoomLevel = 10
@@ -83,4 +83,4 @@ module.exports = class MapControl
     }, 300)
     marker = @markerDict[name]
     marker.openPopup()
-    @map.setView(marker._latlng, 13)
+    @map.setView(marker._latlng, 15)
