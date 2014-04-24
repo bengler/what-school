@@ -28,10 +28,10 @@ form
   padding: 0
   min-height: 10px
   margin-bottom: 20px
-  // transition-property: margin-bottom
-  // transition-duration: 0.1s
-  // -webkit-transition-property: margin-bottom
-  // -webkit-transition-duration: 0.1s
+  transition-property: margin-bottom
+  transition-duration: 0.1s
+  -webkit-transition-property: margin-bottom
+  -webkit-transition-duration: 0.1s
 
   &.populated
     margin-bottom: 40px
@@ -47,11 +47,16 @@ form
     margin: 0
 
     li
-      padding: 10px 20px 10px 20px
+      padding: 10px 10px 10px 10px
       background-color: $colContrast
       color: white
       border-top: 1px solid lighten($colContrast, 5%)
       border-bottom: 1px solid darken($colContrast, 5%)
+      
+      @media (min-width: $mobileBreakpoint)
+        padding: 10px 20px 10px 20px
+
+
     li.missingDigit
       background-color: $colError
       color: white

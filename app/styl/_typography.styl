@@ -7,9 +7,6 @@ h1, h2, h3, h4
   font-weight: 500
   margin: 0 0 10px 0
 
-h1, h2, h3, h4, p, label, input
-  margin-left: 20px
-
 /* Text: */
 
 h1
@@ -17,7 +14,7 @@ h1
   font-size: 45px
   line-height: 54px
   margin-top: 15px
-
+  margin-bottom: 20px
 h2
   font-size: 22px
   font-weight: 400
@@ -46,7 +43,7 @@ input
     border-bottom: 2px solid $colContrastForeground
     padding-bottom: 1px
 
-@media (min-width: 400px)
+@media (min-width: $mobileBreakpoint)
   h1
     font-size: 42px
     line-height: 54px

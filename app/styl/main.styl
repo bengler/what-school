@@ -1,11 +1,14 @@
+// Variables
+
+$mobileBreakpoint = 400px
+
+
 // Useful mixins for CSS3 effects.
 @import 'nib'
-
 @import '_colors'
 @import '_mixins'
 @import '_searchResult'
 @import '_mapControl'
-
 @import '_typography'
 
 body
@@ -20,10 +23,10 @@ body
   .clear
     clear:both
 
-  .content.footer
+  .footer
     margin: 20px
     padding: 0
-    color: #888
+    color: #333
     font-weight: 300
     a
       color: #444
@@ -37,8 +40,13 @@ body
       width: 43%
       float: left
 
-  .content
-    padding-left: 20px
-    margin-top: 20px
+  // Lazily decalre global margins. Refactor.
+  h1, h2, h3, h4, p, label, input
+    margin-left: 10px
+    margin-right: 10px
+    
+    @media (min-width: $mobileBreakpoint)
+      margin-left: 20px
+      margin-right: 20px
 
  
