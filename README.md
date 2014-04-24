@@ -1,7 +1,7 @@
 what-school
 ===========
 
-A single evening suggestion as to how one might formulate a service to let you find what local school your kids belong to. An alternative to this [official page](http://www.utdanningsetaten.oslo.kommune.no/skoletilhoerighet/).
+A service for people in Oslo to find out what school their kids belong to. An alternative to this [official page](http://www.utdanningsetaten.oslo.kommune.no/skoletilhoerighet/).
 
 ## Features
 
