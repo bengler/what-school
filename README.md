@@ -6,12 +6,12 @@ A single evening suggestion as to how one might formulate a service to let you f
 ## Features
 
 - Simple UI, reduced complexity
-- Nominally universally accessible (map icons are keyboard navigable, etc)
-- Interoparable maps – can use tiles from anywhere
-- Retina tiles from mapbox
+- Interoparable maps with leaflet – can use tiles from anywhere
+- Luvly retina tiles from mapbox
 - School boundaries rendered client side from topojson
 - Fuzzy front end text search
 - No server side, only client side JS and static files
+- Nominally universally accessible (map icons are keyboard navigable, etc)
 
 ## Install
 
@@ -23,6 +23,7 @@ brunch w -s
 ```
 
 To update the boundaries and school locations run
+
 ```
 brew install ogr2ogr
 ./scripts/shapshot.sh
@@ -36,13 +37,13 @@ If you want to run this in production you might want to do some of the following
 
 - The school boundaries are batch converted to static files instead of being loaded directly from the WFS. Either the municipality needs to upgrade their servers to support newfangled formats like GeoJSON or there should be a small server that converts and possibly caches this.
 
-- For street level search the entire file of 4k streets is shipped to the client and searched with regexps. It's only 120k and would shrink to about 20k if gzipped on the server. You might consider doing the search server side. Remember to use fuzzy search and rank on levenshtein or other similarity.
+- For street level search the entire file of 4k streets is shipped to the client and searched with regexps. It's only 120k and would shrink to about 20k if gzipped on the server. You could consider doing the search server side. Remember to use fuzzy search and rank on levenshtein or other similarity metric.
 
-- We're feeling bloated: you could skip all of jquery and some chunks of d3 to save space. Es5shim and lodash can also be stricken.
+- We're feeling bloated: you could skip all of jquery and some chunks of d3 to save space. Es5shim and lodash can also be stricken with some rework.
 
 - Everything is keyboard navigable and color blindness proofed. But you should probably have a look at javascript and universal access. 
 
-- Known bugs 1: map popups don't trigger properly difficulty on Android chrome.
+- Known limitations: map buttons don't trigger properly on Android chrome. Android Chrome also has performance difficulties with the map boundaries. Webkit on iOS however does fine. Needs looking into.
 
 - ~~The geometry for the boundaries could be about 1/10 of the size if simplified and converted to topoJSON.~~ Fixed, and they went from 876Kb to 90Kb. Win.
 
