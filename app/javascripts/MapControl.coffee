@@ -8,9 +8,7 @@ module.exports = class MapControl
 
     zoomLevel = 10
     zoomLevel = 11 if $(document).width() > 600
-
     @map.setView([59.9218, 10.73427], zoomLevel)
-
     @initBoundaries()
     @initMarkers()
 
@@ -49,7 +47,6 @@ module.exports = class MapControl
       @map.on("viewreset", reset)
 
       reset()
-
 
   initMarkers: ->
     d3.json "/data/primaries.json", (collection)=> 

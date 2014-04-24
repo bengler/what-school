@@ -65,7 +65,6 @@ module.exports = class SearchBox
         $("input#streetName").change(_.debounce( (() => @keyEvent()) , 500))
 
   setQuery: (string) ->
-    console.info string
     $("input#streetName").val(string)
     @loadingPromise.then ()=>
       @updateView()
