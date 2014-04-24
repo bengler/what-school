@@ -62,6 +62,7 @@ module.exports = class SearchBox
         resolve(1)
         $("input#streetName").keydown(_.debounce( (() => @keyEvent()) , 500))
         $("input#streetName").keyup(_.debounce( (() => @keyEvent()) , 500))
+        $("input#streetName").change(_.debounce( (() => @keyEvent()) , 500))
 
   setQuery: (string) ->
     $("input#streetName").val(string)
