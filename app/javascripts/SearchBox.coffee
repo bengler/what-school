@@ -7,7 +7,7 @@ module.exports = class SearchBox
 
     @loadingPromise = new Promise (resolve, reject) =>
 
-      d3.csv "data/addresses.csv", (@addresses) => 
+      d3.csv "data/addresses.csv.json", (@addresses) => 
         @addressDict = {}
         @addresses.forEach (address)=>
 
