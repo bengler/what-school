@@ -19,7 +19,7 @@ module.exports = class MapControl
     svg = d3.select(@map.getPanes().overlayPane).append("svg")
     g = svg.append("g").attr("class", "leaflet-zoom-hide")
 
-    d3.json "data/school_boundaries.topo.json", (collection)=> 
+    d3.json "/data/school_boundaries.topo.json", (collection)=> 
     
       projectStream = (x,y,that)=>
         point = @map.latLngToLayerPoint(new L.LatLng(y, x))
@@ -52,16 +52,16 @@ module.exports = class MapControl
 
 
   initMarkers: ->
-    d3.json "data/primaries.json", (collection)=> 
+    d3.json "/data/primaries.json", (collection)=> 
       smallIcon = L.icon(
-          iconUrl: 'images/small_icon.png',
-          iconRetinaUrl: 'images/small_icon@2x.png',
+          iconUrl: '/images/small_icon.png',
+          iconRetinaUrl: '/images/small_icon@2x.png',
           iconSize:     [20, 20], 
           iconAnchor:   [10, 10], 
           popupAnchor:  [0, -1] 
       )
 
-      popupTemplate = require "templates/popup"
+      popupTemplate = require "/templates/popup"
 
       onEachFeature = (feature, layer)=>
         properties = feature.properties
