@@ -114,7 +114,7 @@ module.exports = class SearchBox
     if matchString == ""
       return false
 
-    expression = ""
+    expression = "^"
     len = matchString.length - 1
     expression += matchString.charAt(i) + "+.?" for i in [0..len]
     re = new RegExp(expression, "i")
