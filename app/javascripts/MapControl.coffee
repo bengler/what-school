@@ -2,14 +2,10 @@ module.exports = class MapControl
 	constructor: ->
 
     @markerDict = {}
-    @map = L.map('map',
-        scrollWheelZoom: false
-      )
-      .setView([59.9218, 10.73427], 10)
-      # .addLayer(L.mapbox.tileLayer('examples.map-20v6611k',
-      .addLayer(L.mapbox.tileLayer('evenwestvang.hp8gagn1',
-        detectRetina: true
-    ))
+    @map = L.mapbox.map('map','examples.map-20v6611k',{
+      scrollWheelZoom: false, layer: {detectRetina: true}}
+    )
+    @map.setView([59.9218, 10.73427], 10)
 
     @initBoundaries()
     @initMarkers()
