@@ -8,9 +8,9 @@ module.exports = class Application
     @mapControl = new MapControl()
 
     $(document).ready ()=>
-      query = location.pathname.split("/")
-      if query[1] == "gate"
-        @searchBox.setQuery(decodeURI(query[2]))
+      query = location.search.split("=")
+      if query[0] == "?streetName"
+        @searchBox.setQuery(decodeURI(query[1]))
 
   focusOnSchoolName: (name)->
     @mapControl.focusOnSchoolName(name)

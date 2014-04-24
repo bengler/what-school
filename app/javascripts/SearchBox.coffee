@@ -2,12 +2,12 @@
 module.exports = class SearchBox
 	constructor: (controller) ->
     @controller = controller
-    @streetTemplate = require "/templates/street_listing"
+    @streetTemplate = require "templates/street_listing"
     @lastFieldValue = ""
 
     @loadingPromise = new Promise (resolve, reject) =>
 
-      d3.csv "/data/addresses.csv", (@addresses) => 
+      d3.csv "data/addresses.csv", (@addresses) => 
         @addressDict = {}
         @addresses.forEach (address)=>
 
@@ -76,11 +76,7 @@ module.exports = class SearchBox
   keyEvent: (e) =>
     @currentFieldValue = $("input#streetName").val()
     if @lastFieldValue != @currentFieldValue
-      if @currentFieldValue != ""
-        history.replaceState({}, "", "/gate/" + encodeURI(@currentFieldValue))
-      else
-        history.replaceState({}, "", "/")
-
+      history.replaceState({}, "", "?streetName=" + encodeURI(@currentFieldValue))
       @lastFieldValue = $("input#streetName").val()
 
     @updateView()
