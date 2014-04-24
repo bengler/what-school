@@ -5,7 +5,11 @@ module.exports = class MapControl
     @map = L.mapbox.map('map','examples.map-20v6611k',{
       scrollWheelZoom: false, layer: {detectRetina: true}}
     )
-    @map.setView([59.9218, 10.73427], 10)
+
+    zoomLevel = 10
+    zoomLevel = 11 if $(document).width() > 600
+
+    @map.setView([59.9218, 10.73427], zoomLevel)
 
     @initBoundaries()
     @initMarkers()
