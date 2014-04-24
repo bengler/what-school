@@ -45,5 +45,7 @@ If you want to run this in production you might want to do some of the following
 
 - Known limitations: map buttons don't trigger properly on Android chrome. Android Chrome also has performance difficulties with the map boundaries. Webkit on iOS however does fine. Needs looking into.
 
+- Currently only searches are linkable. Ideally school popup selection should replace URLs also.
+
 - ~~The geometry for the boundaries could be about 1/10 of the size if simplified and converted to topoJSON.~~ Fixed, and they went from 876Kb to 90Kb. Win.
 
