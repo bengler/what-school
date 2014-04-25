@@ -3,7 +3,7 @@ if street.oneSchool
     | Hele 
     strong #{street.streetName}
     | går på 
-    .schoolName #{street.school} skole
+    a.schoolName(role="link", tabindex="0") #{street.school} skole
 else
     unless digit
       li.missingDigit
@@ -21,4 +21,4 @@ else
           | I 
           strong #{street.streetName} #{digit}
           |  går de på 
-          .schoolName #{street.school} skole
+          a.schoolName(tabindex="0") #{street.school}

@@ -3,7 +3,7 @@ module.exports = class SearchBox
 	constructor: (controller) ->
     @controller = controller
     @streetTemplate = require "templates/street_listing"
-    @lastFieldValue = ""
+    @lastFieldValue = $("input#streetName").val()
 
     @loadingPromise = new Promise (resolve, reject) =>
 
@@ -78,8 +78,7 @@ module.exports = class SearchBox
     if @lastFieldValue != @currentFieldValue
       history.replaceState({}, "", "?streetName=" + encodeURI(@currentFieldValue))
       @lastFieldValue = $("input#streetName").val()
-
-    @updateView()
+      @updateView()
 
   updateView: () =>
     fieldValue = $("input#streetName").val()
@@ -93,8 +92,16 @@ module.exports = class SearchBox
       html = html + "</ul>"
 
       $(".searchResults").html(html)
-      $(".searchResults .schoolName").click (e)=>
-        @controller.focusOnSchoolName(e.currentTarget.innerText)
+
+      navigateLink = (e)=>
+        if e.type == "click" || e.keyCode == 13 || e.keyCode == 32
+          ref = e.target
+          ref ||= e.srcElement
+          if ref
+            @controller.focusOnSchoolName(e.currentTarget.innerText)
+
+      $(".searchResults .schoolName").keydown(navigateLink)
+      $(".searchResults .schoolName").click(navigateLink)
       $(".searchResults, .inputWrapper").addClass("populated")
     else
       $(".searchResults").html("")
