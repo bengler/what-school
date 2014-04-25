@@ -2,7 +2,7 @@ module.exports = class MapControl
 	constructor: ->
 
     @markerDict = {}
-    @map = L.mapbox.map('map','examples.map-20v6611k',{
+    @map = L.mapbox.map('map','evenwestvang.hp8gagn1',{
       scrollWheelZoom: false, tileLayer: {detectRetina: true}}
     )
 
