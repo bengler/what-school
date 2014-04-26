@@ -35,7 +35,7 @@ To update the school addresses you need to grab the official [90 page PDF](http:
 
 If you want to run this in production you might want to do some of the following.
 
-- This application is client side only – as maintaining server sides for demo applications is not really desirable. This led to it having nice bells and whistles like instant autocomplete client side search. I've made some fixes as a result of a few user tests. If you want to run it this way – you should do a few more. If not – reformulate with vanilla search boxes and server side search. Don't forget to make text matching fuzzy though. I can't spell my street right and neither can you.
+- This application is client side only – as maintaining server sides for demo applications is not really desirable. This led to it having nice bells and whistles like instant autocomplete client side search. It's better than a text field and a search button, but it's also slightly unexpected. I've done a few user tests with (also with pensioners) and fixed the things that can go wrong. But if you want to run it this way – you should do a few more.
 
 - The school boundaries are batch converted to static files instead of being loaded directly from the WFS. Either the municipality needs to upgrade their servers to support newfangled formats like GeoJSON or there should be a small server that converts and possibly caches this.
 
