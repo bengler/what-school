@@ -41,7 +41,7 @@ If you want to run this in production you might want to do some of the following
 
 - For street level search the entire file of 4k streets is shipped to the client and searched with regexps. It's only 120k and would shrink to about 20k if gzipped on the server. You could consider doing the search server side. Remember to use fuzzy search and rank on levenshtein or other similarity metric.
 
-- We're feeling kinda bloated: you could skip all of jquery and some chunks of d3 to save space. Es5shim and lodash can also be stricken with some rework. On the other hand – we're at 350Kb gzipped total for the entire service with all the data, assets and JS at 1.27s total load time. The municipal service is at 537Kb for the first page only, clocking in at 4s.
+- We're feeling kinda bloated: you could skip all of jquery and some chunks of d3 to save space. Es5shim and lodash can also be stricken with some rework. On the other hand – we're at 350Kb gzipped total for the entire service with all the data, assets and JS at 1.27s total load time. The municipal service is at 5.4Mb for the first page only, clocking in at 4s.
 
 - It's all keyboard navigable and color blindness proofed. It should be WCAG 2 AA, but I'd have that tested.
 
