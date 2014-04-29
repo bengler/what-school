@@ -29,7 +29,7 @@ brew install ogr2ogr
 ./scripts/shapshot.sh
 ```
 
-To update the school addresses you need to grab the official [90 page PDF](http://www.utdanningsetaten.oslo.kommune.no/getfile.php/utdanningsetaten%20%28UDE%29/Internett%20%28UDE%29/ASA/Dokumenter/Alfabetisk%20gateregister%20skoletilh%C3%B8righet%20per%20112013.pdf) and extract the data. Yeah, I know. I used [Tabula](http://tabula.nerdpower.org/) and found it totes amaze and hassle free.
+To update the school addresses you need to grab the official [50 page PDF](http://www.utdanningsetaten.oslo.kommune.no/getfile.php/utdanningsetaten%20%28UDE%29/Internett%20%28UDE%29/ASA/Dokumenter/Alfabetisk%20gateregister%20skoletilh%C3%B8righet%20per%20112013.pdf) and extract the data. Yeah, I know. I used [Tabula](http://tabula.nerdpower.org/) and found it totes amaze and hassle free.
 
 ## So, um. This is a quick sketch
 
