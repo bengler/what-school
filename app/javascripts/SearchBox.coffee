@@ -93,15 +93,30 @@ module.exports = class SearchBox
 
       $(".searchResults").html(html)
 
-      navigateLink = (e)=>
+      isNavigation = (e)->
         if e.type == "click" || e.keyCode == 13 || e.keyCode == 32
           ref = e.target
           ref ||= e.srcElement
           if ref
-            @controller.focusOnSchoolName(e.currentTarget.innerText)
+            e.preventDefault()
+            return true
+        return false
 
-      $(".searchResults .schoolName").keydown(navigateLink)
-      $(".searchResults .schoolName").click(navigateLink)
+      navigateMap = (e)=>
+        if isNavigation(e)
+          console.info $(e.currentTarget)
+          console.info this
+          @controller.focusOnSchoolName(e.currentTarget.innerText)
+
+      navigateStreet = (e)=>
+        if isNavigation(e)
+          $("input#streetName").val(e.currentTarget.innerText + " ")
+          $("input#streetName").focus()
+
+      $(".searchResults .missingDigit .streetName").keydown(navigateStreet)
+      $(".searchResults .missingDigit .streetName").click(navigateStreet)
+      $(".searchResults .schoolName").keydown(navigateMap)
+      $(".searchResults .schoolName").click(navigateMap)
       $(".searchResults, .inputWrapper").addClass("populated")
     else
       $(".searchResults").html("")
@@ -135,7 +150,6 @@ module.exports = class SearchBox
       return true
 
     matches.forEach (street)=>
-
       unless street.oneSchool && digit?
         if digit % 2 == 0
           side = "evenNumbers"
