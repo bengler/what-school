@@ -76,7 +76,7 @@ module.exports = class MapControl
 
   focusOnSchoolName: (name)->
     $('html, body').animate({
-      scrollTop: $("#map").offset().top
+      scrollTop: $("#mapControl").offset().top - 20
     }, 300)
     marker = @markerDict[name]
     marker.openPopup()

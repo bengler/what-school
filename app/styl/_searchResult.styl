@@ -20,7 +20,7 @@ form
     input
       border: 2px inset
       min-width: 255px
-      width: 50%
+      width: 70%
       padding: 5px 5px 5px 10px
 
 .searchResults
@@ -33,14 +33,18 @@ form
   -webkit-transition-property: margin-bottom
   -webkit-transition-duration: 0.1s
 
+  strong
+    font-weight: 300
+
   &.populated
     margin-bottom: 40px
 
   .schoolName, .missingDigit .streetName
-    display: inline
+    display: inline-block
     cursor: pointer
-    font-weight: 800
-    padding: 0px 3px
+    padding: 0px 0px
+    height: 20px
+    font-weight: 500
 
   ul
     list-style: none
@@ -48,24 +52,23 @@ form
     margin: 0
 
     li
-      padding: 10px 10px 10px 10px
+      padding: 10px 10px 10px 15px
       background-color: $colContrast
       color: $colContrastForeground
-      border-top: 1px solid lighten($colContrast, 5%)
-      border-bottom: 1px solid darken($colContrast, 5%)
-      
-      @media (min-width: $mobileBreakpoint)
-        padding: 10px 20px 10px 20px
+      border-top: 2px solid lighten($colContrast, 10%)
+      border-bottom: 2px solid darken($colContrast, 7%)
 
+      @media (min-width: $mobileBreakpoint)
+        padding: 10px 20px 10px 30px
 
     li.missingDigit
       background-color: $colError
       color: $colContrastForeground
-      border-top: 1px solid lighten($colError, 5%)
-      border-bottom: 1px solid darken($colError, 5%)
+      border-top-color: lighten($colError, 10%)
+      border-bottom-color: darken($colError, 7%)
     li.notAnAddress
       background-color: $colBackground
       color: $colForeground
-      border-top: 1px solid lighten($colBackground, 5%)
-      border-bottom: 1px solid darken($colBackground, 5%)
+      border-top-color: lighten($colBackground, 10%)
+      border-bottom-color: darken($colBackground, 7%)
 

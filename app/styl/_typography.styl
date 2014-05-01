@@ -1,7 +1,7 @@
 // FONTS
 
 body, input
-  font-family: 'Lato', 'Helvetica Neue','Helvetica', sans-serif
+  font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B', 'Helvetica Neue','Helvetica', sans-serif
 
 h1, h2, h3, h4
   font-weight: 500
@@ -10,53 +10,61 @@ h1, h2, h3, h4
 /* Text: */
 
 h1
-  font-family: Lato
-  font-size: 45px
-  line-height: 54px
-  margin-top: 15px
-  margin-bottom: 30px
+  font-size: 38px
+  line-height: 45px
   font-weight: 700
+  padding: 10px 10px 10px 10px
+  background-color: $colForeground
+  color: $colBackground
+
 h2
   font-size: 22px
   font-weight: 400
   margin-bottom: 10px
+  margin-top: 20px
 
 label, p
   color: $colForeground
   font-size: 14px
   font-weight: 400
 
+label
+  color: $colForegroundLighter
+
 input
   font-size: 18px
   font-weight: 300
 
 .searchResults
-  font-size: 12px
+  font-size: 13px
   font-weight: 300
+
+  li
+    line-height: 24px
 
   .schoolName, .missingDigit .streetName
     text-decoration: none
-    border-bottom: 2px solid darken($colContrastForeground, 10%)
+    border-bottom: 3px solid darken($colContrastForeground, 10%)
     padding-bottom: 1px
 
     &:focus
-      background-color: $colForeground
-      color: $colForeground
+      background-color: rgba(255,255,255,0.4)
 
     &:hover
       text-decoration: none
-      border-bottom: 2px solid $colContrastForeground
+      border-bottom: 4px solid $colContrastForeground
       padding-bottom: 1px
 
 
 @media (min-width: $mobileBreakpoint)
   h1
-    font-size: 42px
+    font-size: 36px
     line-height: 54px
-    margin-top: 25px
-    margin-bottom: 25px
+    padding: 25px 25px 25px 25px
+
   h2
     font-size: 30px
+    margin-top: 40px
 
   label
     font-size: 20px
@@ -66,3 +74,6 @@ input
 
   .searchResults
     font-size: 16px
+
+    ul li
+      line-height: 24px
