@@ -81,3 +81,4 @@ module.exports = class MapControl
     marker = @markerDict[name]
     marker.openPopup()
     @map.setView(marker._latlng, 15)
+    $(".leaflet-popup-content a.homepage").focus()
