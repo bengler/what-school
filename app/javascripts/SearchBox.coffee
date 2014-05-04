@@ -104,8 +104,6 @@ module.exports = class SearchBox
 
       navigateMap = (e)=>
         if isNavigation(e)
-          console.info $(e.currentTarget)
-          console.info this
           @controller.focusOnSchoolName(e.currentTarget.innerText)
 
       navigateStreet = (e)=>
