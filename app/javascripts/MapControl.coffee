@@ -1,6 +1,6 @@
 module.exports = class MapControl
-	constructor: ->
 
+	constructor: ->
     @markerDict = {}
     @map = L.mapbox.map('map','evenwestvang.hp8gagn1',{
       scrollWheelZoom: false, tileLayer: {detectRetina: true}}
@@ -13,7 +13,6 @@ module.exports = class MapControl
     @initMarkers()
 
   initBoundaries: ->
-
     svg = d3.select(@map.getPanes().overlayPane).append("svg")
     g = svg.append("g").attr("class", "leaflet-zoom-hide")
 

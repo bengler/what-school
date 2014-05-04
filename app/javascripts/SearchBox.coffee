@@ -1,4 +1,3 @@
-
 module.exports = class SearchBox
 	constructor: (controller) ->
     @controller = controller
@@ -119,6 +118,7 @@ module.exports = class SearchBox
     else
       $(".searchResults").html("")
       $(".searchResults, .inputWrapper").removeClass("populated")
+
 
 	processInput: (matchString)=>
     # TODO: Add sorting on levenshtein distance
