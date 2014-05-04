@@ -68,6 +68,9 @@ module.exports = class MapControl
       pointToLayer = (feature, latlng)=>
         marker = L.marker(latlng, {icon: smallIcon})
         @markerDict[feature.properties.NAVN] = marker
+        marker.addEventListener "popupopen", ()=>
+          $(".leaflet-popup-content a.homepage").focus()
+
 
       L.geoJson(collection,
         pointToLayer: pointToLayer
@@ -81,4 +84,3 @@ module.exports = class MapControl
     marker = @markerDict[name]
     marker.openPopup()
     @map.setView(marker._latlng, 15)
-    $(".leaflet-popup-content a.homepage").focus()
